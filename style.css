@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+#prompt {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    z-index: -1;
+}
+
+#prompt.active {
+    z-index: 0;
+}
+
+#prompt * {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000050;
+}
+
+#prompt * p {
+    font-size: 40px;
+}
+
+p.red {
+    color: red;
+}
+
+p.yellow {
+    color: yellow;
+}
+
+.background {
+    position: fixed;
+    width: 110vw;
+    height: calc(100vh + 10vw);
+    background-image: url(./images/background-image.png);
+    background-size: 5vw 5vw;
+    background-repeat: repeat;
+    z-index: -1;
+    animation: background-animation 5s linear infinite;
+}
+
+#winner-prompt {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+}
+
+@keyframes background-animation {
+    to {
+        transform: translate(5vw, 5vw);
+    }
+}
+
+h1 {
+    margin: 0;
+    font-size: 40px;
+}
+
+/* GRID */
+
+.grid-container {
+    width: 750px;
+    height: 620px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.grid-container * {
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+/* COLUMNS */
+
+#columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0;
+}
+
+.column {
+    height: 600px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    align-items: center;
+    justify-content: end;
+}
+
+.column .red,.yellow  {
+    height: 95px;
+    width: 95px;
+    z-index: -1;
+}
+
+@keyframes falling-piece {
+    0% {
+        transform: translateY(-600%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.hovering {
+    cursor: pointer;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+}
+
+.hovering svg{
+    width: inherit;
+    height: inherit;
+}
+
+.hovering svg rect {
+    stroke-dashoffset: 0;
+    animation: stroke-animation 1s linear infinite;
+}
+
+@keyframes stroke-animation {
+    to {
+        stroke-dashoffset: 49;
+    }
+}
